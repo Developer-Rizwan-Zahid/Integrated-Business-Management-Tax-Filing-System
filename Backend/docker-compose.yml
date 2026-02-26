@@ -1,0 +1,28 @@
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: BusinessTaxDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./BusinessTaxSystem.Backend
+      dockerfile: Dockerfile
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=db;Database=BusinessTaxDb;Username=postgres;Password=yourpassword;
+      - Jwt__Key=YourVerySecretKeyThatIsAtLeast32CharactersLong
+      - Jwt__Issuer=BusinessTaxSystem
+      - Jwt__Audience=BusinessTaxUsers
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
