@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+:root {
+  /* Core brand palette */
+  /* Soft, premium feel background for the entire app */
+  --background: #eef2ff; /* very light indigo */
+  --foreground: #0f172a; /* slate-900 */
+  --primary: #1d4ed8; /* blue-600 */
+  --primary-dark: #1e40af; /* blue-700 */
+  --secondary: #0f766e; /* teal-700 */
+  --accent: #f59e0b; /* amber-500 */
+
+  /* Supporting surface colors */
+  --surface: #ffffff;
+  --surface-muted: #e5e7eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  color: var(--foreground);
+  /* Solid professional background */
+  background-color: var(--background);
+}
+
+/* Subtle global polish */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Modern, thin scrollbar for desktop */
+@media (min-width: 768px) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(30, 64, 175, 0.5) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(30, 64, 175, 0.55);
+    border-radius: 999px;
+  }
+}
+
+*::selection {
+  background-color: rgba(37, 99, 235, 0.16); /* blue-600 / 16% */
+  color: var(--foreground);
+}
